@@ -3,6 +3,7 @@ $primary-color: rgb(32, 79, 145);
 $secondary-color: rgb(0, 0, 0);
 $text-secondary-color: rgb(99, 99, 99);
 $background-color: rgb(255, 255, 255);
+$footer-background-color: rgb(249, 249, 249);
 
 $default-elements-margin-x: 150px;
 $default-elements-margin-y: 20px;
@@ -169,6 +170,9 @@ $layout-breakpoint-small: 960px;
     &__button {
         @extend %roboto-light;
         @extend %button;
+        width: 250px;
+        height: 100px;
+        font-size: 25px;
         margin: 50px auto;
         background-color: $primary-color;
     }
@@ -178,7 +182,7 @@ $layout-breakpoint-small: 960px;
     @include flex-container($justify: center, $align: center);
     width: 100%;
     min-height: 650px;
-    background-image: url('https://media.glamour.com/photos/595ea38ef4609a21dfa1137e/master/w_2560%2Cc_limit/summer-fashion.jpg');
+    background-image: url('../img/ns_00.png');
     background-size: cover;
     background-position: center;
 
@@ -324,4 +328,85 @@ $layout-breakpoint-small: 960px;
         color: $primary-color;
     }
 
+}
+
+.end-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 400px 1fr;
+  background-color: $footer-background-color;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px;
+
+  &__section {
+    padding: 30px;
+    box-sizing: border-box;
+  }
+  &__title {
+    @extend %roboto-black;
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: $secondary-color;
+    text-transform: uppercase
+  }
+  &__item {
+    @extend %roboto-light;
+    font-size: 22px;
+    color: $text-secondary-color;
+    text-decoration: none;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  &__list {
+    @extend %list;
+    flex-direction: column;
+    align-items: flex-start;
+    list-style: none;
+    gap: 7px;
+  }
+
+  &__input {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid $secondary-color;
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    
+  }
+  &__policy {
+    @extend %roboto-light;
+    font-size: 20px;
+    color: $secondary-color;
+    grid-column: 1 / 4;
+    text-align: start;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  &__icons{
+    @include flex-container(row, flex-end, center, nowrap);
+    grid-column: 4;
+    justify-content: end;
+    margin-top: 40px;
+    gap: 40px;
+    color: $text-secondary-color;
+  }
+  &__icon{
+    font-size: 30px;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+  &__divider{
+    grid-column: 1 / 5;
+    height: 1px;
+    background-color: $text-secondary-color;
+    margin: 20px 0;
+  }
 }
