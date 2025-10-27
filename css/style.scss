@@ -10,8 +10,8 @@ $default-elements-margin-y: 20px;
 $nav-height: 100px;
 $nav-padding: 20px;
 
-$card-min-width: 400px;
-$card-min-height: 550px;
+$card-min-width: 350px;
+$card-min-height: 400px;
 $card-padding: 10px;
 
 $card-image-width: $card-min-width;
@@ -159,10 +159,10 @@ $layout-breakpoint-small: 960px;
     &__button {
         @extend %roboto-light;
         @extend %button;
-        width: 250px;
-        height: 100px;
-        font-size: 25px;
-        margin: 50px auto;
+        width: 220px;
+        height: 80px;
+        font-size: 20px;
+        margin: 50px auto 100px auto;
         background-color: $primary-color;
     }
 }
@@ -223,7 +223,7 @@ $layout-breakpoint-small: 960px;
 
     &__title{
         @extend %roboto-black;
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         font-size: 40px;
 
         @media (max-width: $layout-breakpoint-small) {
@@ -347,7 +347,7 @@ $layout-breakpoint-small: 960px;
 .info-boxes {
     @include flex-container(row, center, center, wrap);
     gap: 20px;
-    margin: 50px 120px;
+    margin: 20px;
 
     @media (max-width: $layout-breakpoint-small) {
       margin: 50px 20px;
@@ -424,7 +424,7 @@ $layout-breakpoint-small: 960px;
   width: 100%;
   box-sizing: border-box;
   padding: 40px;
-  gap: 20px 30px;
+  gap: 20px 70px;
   
   @media (max-width: $layout-breakpoint-small) {
     grid-template-columns: 1fr;
@@ -435,6 +435,7 @@ $layout-breakpoint-small: 960px;
   &__section {
     padding: 30px 0;
     box-sizing: border-box;
+    margin-bottom: 60px;
 
     @media (max-width: $layout-breakpoint-small) {
       padding: 10px 0;
@@ -442,14 +443,14 @@ $layout-breakpoint-small: 960px;
   }
   &__title {
     @extend %roboto-black;
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 15px;
     color: $secondary-color;
     text-transform: uppercase;
   }
   &__item {
     @extend %roboto-light;
-    font-size: 22px;
+    font-size: 20px;
     color: $text-secondary-color;
     text-decoration: none;
 
@@ -458,7 +459,7 @@ $layout-breakpoint-small: 960px;
     }
 
     @media (max-width: $layout-breakpoint-small) {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
   &__list {
