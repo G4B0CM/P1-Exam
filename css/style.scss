@@ -1,4 +1,3 @@
-/* --- Variables --- */
 $primary-color: rgb(32, 79, 145);
 $secondary-color: rgb(0, 0, 0);
 $text-secondary-color: rgb(99, 99, 99);
@@ -79,43 +78,6 @@ $layout-breakpoint-small: 960px;
   gap: 40px;
 }
 
-%hero {
-    @include flex-container(column, center, center);
-}
-
-%card {
-    @include flex-container(column, center, center);
-    background-color: $background-color;
-    padding: $card-padding;
-    box-sizing: border-box;
-    min-height: $card-min-height;
-    min-width: $card-min-width;
-}
-
-%note {
-    @include flex-container(row, start, start);
-    min-width: $note-min-width;
-    min-height: $note-min-height;
-}
-
-%box {
-    @include flex-container(column, center, center);
-    min-width: $box-min-width;
-    min-height: $box-min-height;
-    padding: 20px;
-    gap: 20px;
-    box-sizing: border-box;
-    background-color: $secondary-color;
-}
-
-@media (min-width: $layout-breakpoint-small) {
-  .notes{
-    display: flex;
-    flex-wrap: wrap;
-  }
-}
-
-
 .menu {
   @include flex-container($justify: flex-start);
   background-color: $background-color;
@@ -125,20 +87,40 @@ $layout-breakpoint-small: 960px;
   box-sizing: border-box;
   gap: 50px;
 
+  @media (max-width: $layout-breakpoint-small) {
+    gap: 20px;
+    padding: 10px;
+  }
+
   &__title {
     @extend %roboto-light;
     color: $secondary-color;
     font-size: 45px;
     margin: 0 0 0 10px;
+
+    @media (max-width: $layout-breakpoint-small) {
+      font-size: 28px;
+      margin: 0;
+    }
   }
 
   &__list {
     @extend %list;
     margin: 20px 0 0 170px;
+
+    @media (max-width: $layout-breakpoint-small) {
+      display: none;
+    }
+
     &--icons {
       margin-left: auto;
       margin-right: 70px;
       justify-content: center;
+
+      @media (max-width: $layout-breakpoint-small) {
+        margin-right: 0;
+        gap: 20px;
+      }
     }
   }
 
@@ -162,11 +144,18 @@ $layout-breakpoint-small: 960px;
     &:hover {
       color: $primary-color;
     }
+
+    &--desktop-only {
+      @media (max-width: $layout-breakpoint-small) {
+        display: none;
+      }
+    }
   }
 }
 
 .main-content {
     @include flex-container($direction: column, $justify: none, $align: none);
+    
     &__button {
         @extend %roboto-light;
         @extend %button;
@@ -186,12 +175,21 @@ $layout-breakpoint-small: 960px;
     background-size: cover;
     background-position: center;
 
+    @media (max-width: $layout-breakpoint-small) {
+      min-height: 400px;
+    }
+
     &__elements{
         @include flex-container($direction: column, $justify: center, $align: center);
         gap: 30px;
         margin-left: auto;
         justify-content: center;
         align-items: center;
+
+        @media (max-width: $layout-breakpoint-small) {
+          margin-left: 0;
+          padding: 20px;
+        }
     }
 
     &__title{
@@ -201,6 +199,11 @@ $layout-breakpoint-small: 960px;
         width: 80%;
         text-align: center;
         text-transform: uppercase;
+
+        @media (max-width: $layout-breakpoint-small) {
+          font-size: 32px;
+          width: 100%;
+        }
     }
     &__button{
         @extend %roboto-regular;
@@ -209,16 +212,23 @@ $layout-breakpoint-small: 960px;
 }
 
 .hero {
-    @extend %hero;
+    @include flex-container(column, center, center);
     width: 100%;
     min-height: 200px;
+    padding: 20px;
+    box-sizing: border-box;
     background-color: $background-color;
     color: $secondary-color;
+    text-align: center;
 
     &__title{
         @extend %roboto-black;
         letter-spacing: 2px;
         font-size: 40px;
+
+        @media (max-width: $layout-breakpoint-small) {
+          font-size: 28px;
+        }
     }
 
     &__subtitle{
@@ -226,22 +236,46 @@ $layout-breakpoint-small: 960px;
         font-size: 20px;
         margin-top: 10px;
         color: $text-secondary-color;
+
+        @media (max-width: $layout-breakpoint-small) {
+          font-size: 16px;
+        }
     }
 }
 
 .product {
     @include flex-container( $justify: center, $align: center, $wrap: wrap);
-    gap: 0;
-    margin: 20px;
+    gap: 20px;
+    margin: 20px 0;
+    padding: 0 20px;
+    box-sizing: border-box;
     background-color: $background-color;
+
     &__card{
-        @extend %card;
+        @include flex-container(column, center, center);
+        background-color: $background-color;
+        padding: $card-padding;
+        box-sizing: border-box;
+        min-height: $card-min-height;
+        width: $card-min-width;
+        
+        @media (max-width: $layout-breakpoint-small) {
+          width: 100%;
+          max-width: 350px;
+          min-height: auto;
+          min-width: 0;
+        }
     }
     &__image{
         width: $card-image-width;
         height: $card-image-height;
         object-fit: cover;
         margin-bottom: 15px;
+
+        @media (max-width: $layout-breakpoint-small) {
+          width: 100%;
+          height: 350px;
+        }
     }
     &__name{
         @extend %roboto-black;
@@ -257,14 +291,27 @@ $layout-breakpoint-small: 960px;
 
 .notes {
     @include flex-container( $justify: space-between, $align: center, $wrap: nowrap);
-    
-    margin: 100px 150px 0 150px;
+    margin: 100px $default-elements-margin-x 0 $default-elements-margin-x;
     box-sizing: border-box;
     gap: 30px;
 
+    @media (max-width: $layout-breakpoint-small) {
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 50px 20px;
+      gap: 40px;
+    }
+
     &__note{
-        @extend %note;
+        @include flex-container(row, start, start);
+        min-width: $note-min-width;
+        min-height: $note-min-height;
         gap: 20px;
+
+        @media (max-width: $layout-breakpoint-small) {
+          min-width: 100%;
+          min-height: auto;
+        }
     }
     &__content{
         @include flex-container($direction:column, $justify: start, $align: start);
@@ -284,6 +331,11 @@ $layout-breakpoint-small: 960px;
         font-size: 20px;
         color: $text-secondary-color;
         width: 80%;
+        
+        @media (max-width: $layout-breakpoint-small) {
+          width: 100%;
+          font-size: 16px;
+        }
     }
     &__icon{
         font-size: 35px;
@@ -295,14 +347,41 @@ $layout-breakpoint-small: 960px;
 .info-boxes {
     @include flex-container(row, center, center, wrap);
     gap: 20px;
-    margin: 0 120px;
+    margin: 50px 120px;
+
+    @media (max-width: $layout-breakpoint-small) {
+      margin: 50px 20px;
+    }
 
     &__box {
-        @extend %box;
+        @include flex-container(column, center, center);
+        min-width: $box-min-width;
+        min-height: $box-min-height;
+        padding: 20px;
+        gap: 20px;
+        box-sizing: border-box;
+        background-color: $secondary-color;
         flex-grow: 1;
+        text-align: center;
+
+        @media (max-width: $layout-breakpoint-small) {
+          min-width: 100%;
+          min-height: 350px;
+        }
+
         &--big {
-            @extend %box;
+            @include flex-container(column, center, center);
+        min-width: $box-min-width;
+        min-height: $box-min-height;
+        padding: 20px;
+        gap: 20px;
+        box-sizing: border-box;
+        background-color: $secondary-color;
             flex-grow: 2;
+
+            @media (max-width: $layout-breakpoint-small) {
+              min-width: 100%;
+            }
         }
     }
     &__title{
@@ -310,16 +389,24 @@ $layout-breakpoint-small: 960px;
         font-size: 40px;
         margin-bottom: 10px;
         color: $background-color;
-        text-transform: uppercase
+        text-transform: uppercase;
+        
+        @media (max-width: $layout-breakpoint-small) {
+          font-size: 28px;
+        }
     }
     &__text {
         @extend %roboto-light;
         font-size: 22px;
         color: $background-color;
-
         text-align: center;
         margin-bottom: 10px;
         width: $box-min-width - 50px;
+
+        @media (max-width: $layout-breakpoint-small) {
+          width: 100%;
+          font-size: 16px;
+        }
     }
     &__button {
         @extend %roboto-regular;
@@ -327,28 +414,38 @@ $layout-breakpoint-small: 960px;
         background-color: $background-color;
         color: $primary-color;
     }
-
 }
 
 .end-menu {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 400px 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1.5fr;
+  grid-template-rows: auto 1fr;
   background-color: $footer-background-color;
   width: 100%;
   box-sizing: border-box;
   padding: 40px;
+  gap: 20px 30px;
+  
+  @media (max-width: $layout-breakpoint-small) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    padding: 30px 20px;
+  }
 
   &__section {
-    padding: 30px;
+    padding: 30px 0;
     box-sizing: border-box;
+
+    @media (max-width: $layout-breakpoint-small) {
+      padding: 10px 0;
+    }
   }
   &__title {
     @extend %roboto-black;
     font-size: 20px;
     margin-bottom: 15px;
     color: $secondary-color;
-    text-transform: uppercase
+    text-transform: uppercase;
   }
   &__item {
     @extend %roboto-light;
@@ -359,6 +456,10 @@ $layout-breakpoint-small: 960px;
     &:hover {
       color: $primary-color;
     }
+
+    @media (max-width: $layout-breakpoint-small) {
+      font-size: 18px;
+    }
   }
   &__list {
     @extend %list;
@@ -368,16 +469,31 @@ $layout-breakpoint-small: 960px;
     gap: 7px;
   }
 
+  &__input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
   &__input {
     padding: 10px;
     font-size: 16px;
     border: none;
     border-bottom: 2px solid $secondary-color;
-    width: 50%;
+    width: 100%;
     box-sizing: border-box;
     margin-bottom: 10px;
-    
+    background-color: transparent;
+    padding-right: 40px;
   }
+
+  &__input-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: $text-secondary-color;
+  }
+  
   &__policy {
     @extend %roboto-light;
     font-size: 20px;
@@ -386,6 +502,14 @@ $layout-breakpoint-small: 960px;
     text-align: start;
     margin-top: 40px;
     margin-bottom: 20px;
+
+    @media (max-width: $layout-breakpoint-small) {
+      grid-column: 1;
+      text-align: center;
+      margin-top: 10px;
+      order: 2;
+      font-size: 14px;
+    }
   }
   &__icons{
     @include flex-container(row, flex-end, center, nowrap);
@@ -394,6 +518,13 @@ $layout-breakpoint-small: 960px;
     margin-top: 40px;
     gap: 40px;
     color: $text-secondary-color;
+
+    @media (max-width: $layout-breakpoint-small) {
+      grid-column: 1;
+      justify-content: center;
+      margin-top: 20px;
+      order: 1;
+    }
   }
   &__icon{
     font-size: 30px;
@@ -408,5 +539,9 @@ $layout-breakpoint-small: 960px;
     height: 1px;
     background-color: $text-secondary-color;
     margin: 20px 0;
+
+    @media (max-width: $layout-breakpoint-small) {
+      grid-column: 1;
+    }
   }
 }
